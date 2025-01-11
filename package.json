@@ -1,0 +1,23 @@
+{
+  "name": "ws-rest-movelist",
+  "version": "1.0.0",
+  "description": "Webservices RESTful worst movie",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Charles Damasceno <swirfneblin@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.1.0",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
