@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app");
+const app = require("../src/app");
 
 describe("API Integration Tests", () => {
   it("should return producers with min and max intervals", async () => {

@@ -76,3 +76,5 @@ temp/
 *.swp
 *.swo
 *.swn
+
+package-lock.json

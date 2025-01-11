@@ -12,3 +12,5 @@ const PORT = 3000;
   await initializeDatabase();
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 })();
+
+module.exports = app;

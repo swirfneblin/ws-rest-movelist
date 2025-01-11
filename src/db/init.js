@@ -1,14 +1,8 @@
-const { Sequelize } = require("sequelize");
+const { sequelize } = require("../config/database");
 const { Movie } = require("./models");
 const fs = require("fs");
 const path = require("path");
 const csv = require("csv-parser");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: ":memory:",
-  logging: false,
-});
 
 async function initializeDatabase() {
   await sequelize.authenticate();
