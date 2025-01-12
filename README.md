@@ -31,9 +31,13 @@ A API estará disponível em `http://localhost:3000`.
 
 ## Endpoints
 
-### GET producers/intervals
+### GET /producers/intervals
 
 Retorna os menores e maiores intervalos entre prêmios consecutivos dos produtores vencedores.
+
+### GET /producers/all
+
+Retorna todos os produtores vencedores.
 
 ## Testes
 

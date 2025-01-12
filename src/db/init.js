@@ -14,7 +14,7 @@ async function initializeDatabase() {
   fs.createReadStream(csvPath)
     .pipe(csv({ separator: ";" }))
     .on("data", (data) => {
-      if (data.winner.toLowerCase() === "yes") {
+      if ((data?.winner || "").toLowerCase() === "yes") {
         movies.push({
           year: parseInt(data.year, 10),
           title: data.title,

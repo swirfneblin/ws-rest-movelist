@@ -7,10 +7,12 @@ app.use(express.json());
 
 app.use("/producers", awardRoutes);
 
-const PORT = 3000;
-(async () => {
-  await initializeDatabase();
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-})();
-
 module.exports = app;
+
+if (require.main === module) {
+  (async () => {
+    await initializeDatabase();
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })();
+}
