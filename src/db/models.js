@@ -14,6 +14,14 @@ const Movie = sequelize.define("Movie", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  studios: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  winner: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = { Movie };

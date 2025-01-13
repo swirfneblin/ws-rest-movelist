@@ -14,13 +14,14 @@ async function initializeDatabase() {
   fs.createReadStream(csvPath)
     .pipe(csv({ separator: ";" }))
     .on("data", (data) => {
-      if ((data?.winner || "").toLowerCase() === "yes") {
-        movies.push({
-          year: parseInt(data.year, 10),
-          title: data.title,
-          producers: data.producers,
-        });
-      }
+      if (Object.keys(data).length === 0) return;
+      movies.push({
+        year: parseInt(data.year, 10),
+        title: data.title,
+        studios: data.studios,
+        producers: data.producers,
+        winner: data.winner,
+      });
     })
     .on("end", async () => {
       await Movie.bulkCreate(movies);

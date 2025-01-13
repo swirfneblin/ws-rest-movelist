@@ -1,7 +1,7 @@
 const { Movie } = require("../db/models");
 
 const getAwardIntervals = async () => {
-  const movies = await Movie.findAll();
+  const movies = await Movie.findAll({ where: { winner: "yes" } });
   const producerWins = {};
 
   movies.forEach((movie) => {
@@ -46,6 +46,20 @@ const getAwardIntervals = async () => {
   return intervals;
 };
 
-const getAll = async () => await Movie.findAll();
+const getAll = async () => {
+  const movies = await Movie.findAll();
+
+  const filteredMovies = [];
+  movies.forEach((movie) => {
+    filteredMovies.push({
+      year: movie.year,
+      title: movie.title,
+      studios: movie.studios,
+      producers: movie.producers,
+      winner: movie.winner,
+    });
+  });
+  return filteredMovies;
+};
 
 module.exports = { getAwardIntervals, getAll };
