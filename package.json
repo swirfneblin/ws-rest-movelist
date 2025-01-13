@@ -19,6 +19,7 @@
   "author": "Charles Damasceno <swirfneblin@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "csv-parse": "^5.6.0",
     "csv-parser": "^3.1.0",
     "express": "^4.21.2",
     "sequelize": "^6.37.5",

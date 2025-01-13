@@ -1,9 +1,13 @@
 const request = require("supertest");
 const app = require("../src/app");
+const fs = require("fs");
+const path = require("path");
 const { sequelize, initializeDatabase } = require("../src/db/init");
+const csvParse = require("csv-parse/sync");
 
 describe("API Integration Tests", () => {
   let response, data;
+  const csvPath = "../src/assets/movielist.csv";
 
   beforeAll(async () => {
     await initializeDatabase();
@@ -53,5 +57,27 @@ describe("API Integration Tests", () => {
       expect(obj.previousWin).toBeTruthy();
       expect(obj.followingWin).toBeTruthy();
     }
+  });
+
+  it("Should return the API data exactly as in the CSV", async () => {
+    const csvFilePath = path.resolve(__dirname, csvPath);
+    const fileContent = fs.readFileSync(csvFilePath, "utf-8");
+
+    const records = csvParse.parse(fileContent, {
+      columns: true,
+      skip_empty_lines: true,
+      delimiter: ";",
+      cast: (value, context) => {
+        if (context.column === "year") {
+          return parseInt(value, 10);
+        }
+        return value;
+      },
+    });
+
+    const responseMovies = await request(app).get("/producers/all");
+
+    expect(responseMovies.status).toBe(200);
+    expect(responseMovies.body).toEqual(records);
   });
 });
